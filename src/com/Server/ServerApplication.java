@@ -3,22 +3,21 @@ package com.Server;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class ServerApplication{
 
     public static void main(String[] args) throws IOException {
 
         ServerApplication serverApplication = new ServerApplication();
-      Socket clientSocket = serverApplication.startServer(8090);
+      Socket clientSocket = serverApplication.startServer(9090);
         System.out.println("Client COnnected");
 
         DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
         DataInputStream in = new DataInputStream(clientSocket.getInputStream());
 
-//      serverApplication.sendmessage(out,"Your Location is Vaishali,Jaipur,Rajasthan,India ");
-//      serverApplication.readmessage(in);
-        serverApplication.chatting(out,in);
+//      serverApplication.sendMessage(out,"Your Location is Vaishali,Jaipur,Rajasthan,India ");
+      serverApplication.readMessage(in);
+//        serverApplication.chatting(out,in);
 
         out.close();
         in.close();

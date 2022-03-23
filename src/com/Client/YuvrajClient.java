@@ -10,10 +10,9 @@ public class YuvrajClient {
     public static void main(String[] args) {
         try {
             InetAddress addr = Inet4Address.getByName("localhost");
-            Socket socket = new Socket(addr,6666);
+            Socket socket = new Socket(addr,9090);
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
             dataOutputStream.writeUTF("Hello ");
-            dataOutputStream.flush();
             dataOutputStream.close();
             socket.close();
 

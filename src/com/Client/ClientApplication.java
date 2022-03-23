@@ -1,6 +1,8 @@
 package com.Client;
 
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -9,7 +11,7 @@ public class ClientApplication {
 
     public static void main(String[] args) throws IOException {
         ClientApplication clientApplication = new ClientApplication();
-        Socket clientSocket = clientApplication.makeConnectionWithServer("localhost",6666);
+        Socket clientSocket = clientApplication.makeConnectionWithServer("localhost",8000);
 
         DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
         DataInputStream in = new DataInputStream(clientSocket.getInputStream());
@@ -25,7 +27,7 @@ public class ClientApplication {
     public void chatting(DataOutputStream out, DataInputStream in) throws IOException {
         Scanner sc = new Scanner(System.in);
         String gotMessage = "";
-        while(!gotMessage.equalsIgnoreCase("IAMOUT")){
+        while(!(gotMessage.equalsIgnoreCase("IAMOUT"))){
             out.writeUTF(sc.nextLine());
             gotMessage = in.readUTF();
             System.out.println(gotMessage);
